@@ -33,7 +33,7 @@ type tuple struct {
 type Options struct {
 	MaxSize int
 	AHast   THash
-	TTL     float64 // in Newcache or their methods?
+	TTL     float64
 }
 
 var (
@@ -48,7 +48,7 @@ func newCache(o ...*Options) *Cache {
 	var options *Options
 
 	if len(o) < 1 || o[0] == nil {
-		options = &Options{}
+		options = &Options{MaxSize: getTupleMaxSize(), AHast: MD5}
 	} else {
 		options = o[0]
 	}
